@@ -22,7 +22,7 @@ function ProductList(props) {
     const [products, setProducts] = useState([]);
 
     function fetchProducts() {
-        fetch("http:://localhost:3000/products")
+        fetch("http://localhost:3000/products")
         .then((response) => {
             if(!response.ok){
                 throw new Error("Unexpected Server Response"); 
@@ -43,8 +43,11 @@ function ProductList(props) {
     return (
         <>
             <h2 className="text-center mb-3">List Of Products</h2>
-            <button onClick={props.showForm} type="button" className="btn btn-primary me-2">
+            <button onClick={()=>props.showForm()} type="button" className="btn btn-primary me-2">
                 Create
+            </button>
+            <button onClick={()=>fetchProducts()} type="button" className="btn btn-outline-primary me-2">
+                Refresh
             </button>
             <table className="table">
                 <thead>
@@ -87,7 +90,7 @@ function ProductForm(props) {
     return (
         <>
             <h2 className="text-center mb-3">Create New Product</h2>
-            <button onClick={props.showList} type="button" className="btn btn-secondary me-2">
+            <button onClick={()=>props.showList()} type="button" className="btn btn-secondary me-2">
                 Cancel
             </button>
         </>
